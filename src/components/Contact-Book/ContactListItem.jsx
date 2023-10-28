@@ -3,6 +3,9 @@ import { PhoneBookContactItem } from './ContactBook.Styled';
 import PropTypes from 'prop-types';
 
 export function ContactListItem({ contact }) {
+  if (!contact) {
+    return null;
+  }
   return (
     <PhoneBookContactItem>
       {contact.name}: {contact.number}
