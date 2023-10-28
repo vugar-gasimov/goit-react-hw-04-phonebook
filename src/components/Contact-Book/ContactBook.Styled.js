@@ -151,13 +151,13 @@ export const ListItemContainer = styled.div`
   gap: 10px;
   background: linear-gradient(
     315deg,
-    #488cfb,
-    #29dbbc,
-    #ddf505,
     #ff9f0e,
     #e440bb,
     #655adc,
-    #488cfb
+    #488cfb,
+    #488cfb,
+    #29dbbc,
+    #ddf505
   );
 `;
 
