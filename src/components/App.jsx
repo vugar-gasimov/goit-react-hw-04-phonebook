@@ -11,93 +11,95 @@ import {
 import { getFilteredData } from 'helpers/getFilteredData';
 import { toast } from 'react-toastify';
 import { Phone, BookUser } from 'lucide-react';
-export class App extends React.Component {
-  state = {
-    contacts: [
-      { id: 'id-1', name: 'Vugar Gasimov', number: '684-02-29' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-      { id: 'id-5', name: 'Rosie Simpson', number: '459-12-56' },
-    ],
-    filter: '',
+
+export const App = ({ contacts, filter }) => {
+  const [contacts, setContacts] = useState();
+  const [filter, setFilter] = useState('');
+  // state = {
+  //   contacts: [
+  //     { id: 'id-1', name: 'Vugar Gasimov', number: '684-02-29' },
+  //     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  //     { id: 'id-5', name: 'Rosie Simpson', number: '459-12-56' },
+  //   ],
+  //   filter: '',
+  // };
+
+  // componentDidMount() {
+  //   toast.success('Component was Mount');
+  //   const contacts = JSON.parse(window.localStorage.getItem('contacts'));
+  //   if (contacts?.length) {
+  //     this.setState({ contacts });
+  //   }
+  // }
+
+  // componentDidUpdate(_, prevState) {
+  //   if (prevState.contacts !== this.state.contacts) {
+  //     window.localStorage.setItem(
+  //       'contacts',
+  //       JSON.stringify(this.state.contacts)
+  //     );
+  //   }
+  //   if (prevState.filter !== this.state.filter) {
+  //     window.localStorage.setItem('filter', JSON.stringify(this.state.filter));
+  //   }
+  // }
+
+  const handleFilterChange = filter => {
+    // this.setState({ filter });
+    // window.localStorage.setItem('filter', JSON.stringify(this.state.filter));
   };
 
-  componentDidMount() {
-    toast.success('Component was Mount');
-    const contacts = JSON.parse(window.localStorage.getItem('contacts'));
-    if (contacts?.length) {
-      this.setState({ contacts });
-    }
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      window.localStorage.setItem(
-        'contacts',
-        JSON.stringify(this.state.contacts)
-      );
-    }
-    if (prevState.filter !== this.state.filter) {
-      window.localStorage.setItem('filter', JSON.stringify(this.state.filter));
-    }
-  }
-
-  handleFilterChange = filter => {
-    this.setState({ filter });
-    window.localStorage.setItem('filter', JSON.stringify(this.state.filter));
-  };
-
-  addContact = newContact => {
+  const addContact = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
   };
 
-  isNameExists = name => {
+  const isNameExists = name => {
     return this.state.contacts.some(contact => contact.name === name);
   };
-  isNumberExists = number => {
+  const isNumberExists = number => {
     return this.state.contacts.some(contact => contact.number === number);
   };
-  handleContactDelete = contactId => {
+  const handleContactDelete = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
-  render() {
-    const { contacts, filter } = this.state;
-    const filteredData = getFilteredData({ contacts, filter });
-    return (
-      <AppContainer>
-        <TitleContainer>React homework template</TitleContainer>
 
-        <ContentContainer>
-          <PhoneBookContainer>
-            <PhoneBookTitle>
-              PhoneBook <Phone strokeWidth={1.5} />
-            </PhoneBookTitle>
+  // const { contacts, filter } = this.state;
+  const filteredData = getFilteredData({ contacts, filter });
+  return (
+    <AppContainer>
+      <TitleContainer>React homework template</TitleContainer>
 
-            <ContactForm
-              addContact={this.addContact}
-              isNameExists={this.isNameExists}
-              isNumberExists={this.isNumberExists}
-            />
+      <ContentContainer>
+        <PhoneBookContainer>
+          <PhoneBookTitle>
+            PhoneBook <Phone strokeWidth={1.5} />
+          </PhoneBookTitle>
 
-            <PhoneBookContactTitle>
-              Contacts <BookUser strokeWidth={1.5} />
-            </PhoneBookContactTitle>
+          <ContactForm
+            addContact={addContact}
+            isNameExists={isNameExists}
+            isNumberExists={isNumberExists}
+          />
 
-            <Filter setFilter={this.handleFilterChange} filter={filter} />
+          <PhoneBookContactTitle>
+            Contacts <BookUser strokeWidth={1.5} />
+          </PhoneBookContactTitle>
 
-            <ContactList
-              contacts={filteredData}
-              filter={filter}
-              onDeleteContact={this.handleContactDelete}
-            />
-          </PhoneBookContainer>
-        </ContentContainer>
-      </AppContainer>
-    );
-  }
-}
+          <Filter setFilter={handleFilterChange} filter={filter} />
+
+          <ContactList
+            contacts={filteredData}
+            filter={filter}
+            onDeleteContact={handleContactDelete}
+          />
+        </PhoneBookContainer>
+      </ContentContainer>
+    </AppContainer>
+  );
+};
