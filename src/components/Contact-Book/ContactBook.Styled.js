@@ -14,7 +14,9 @@ export const PhoneBookContainer = styled.div`
 
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #4158d0;
+  background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
 `;
 
 export const PhoneBookTitle = styled.h1`
@@ -48,6 +50,7 @@ export const PhoneBookInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
+  background: linear-gradient(315deg, #ff0058, #03a9f4);
 `;
 
 export const PhoneBookButton = styled.button`
@@ -146,6 +149,16 @@ export const ListItemContainer = styled.div`
   border-radius: 5px;
   background-color: #fff;
   gap: 10px;
+  background: linear-gradient(
+    315deg,
+    #488cfb,
+    #29dbbc,
+    #ddf505,
+    #ff9f0e,
+    #e440bb,
+    #655adc,
+    #488cfb
+  );
 `;
 
 export const DeleteButton = styled.button`

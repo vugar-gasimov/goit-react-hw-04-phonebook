@@ -5,6 +5,7 @@ export const AppContainer = styled.div`
   background-color: #f0f0f0;
   text-align: center;
   padding: 20px;
+  background: linear-gradient(315deg, #03a9f4, #ff0058);
 `;
 
 export const TitleContainer = styled.div`
